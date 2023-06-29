@@ -4,12 +4,16 @@ import java.net.*;
 public class ChatClient {
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("localhost", 12345); // Change the hostname and port number if needed
+            Socket socket = new Socket("localhost", 12345); 
             System.out.println("Connected to server.");
 
+            // Input stream for receiving messages from the server
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            
+            // Output stream for sending messages to the server
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
 
+            // Input stream for reading messages from the console
             BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
             String inputLine;
@@ -26,6 +30,7 @@ public class ChatClient {
                 System.out.println("Server: " + inputLine);
             }
 
+            // Close streams and socket
             reader.close();
             writer.close();
             consoleReader.close();
